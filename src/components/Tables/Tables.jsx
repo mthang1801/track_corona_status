@@ -15,7 +15,8 @@ import {TableItem} from "../../components";
 import styles from "./Tables.module.css";
 const useStyles = makeStyles({
   root: {
-    width: '100%',   
+    width: '100%',
+    margin : "2rem 0 5rem 0"  
   },
   container: {
     maxHeight: 500,
@@ -90,9 +91,9 @@ const Tables = ({corona : {histories} , width}) => {
       component="div"
       count={histories.length}
       rowsPerPage={rowsPerPage}
-      page={page}
+      page={page}      
       onChangePage={handleChangePage}
-      onChangeRowsPerPage={handleChangeRowsPerPage}
+      onChangeRowsPerPage={handleChangeRowsPerPage}      
     />
   </Paper>  
   )

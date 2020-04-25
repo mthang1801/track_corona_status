@@ -58,7 +58,7 @@ const CardDetails = ({data_item}) => {
         <div className={styles.card_header}>
           <h3 className={styles.title}>TỔNG SỐ TRƯỜNG HỢP</h3>
           <h5 className={styles.subtitle}><Moment format="DD-MM-YYYY HH:MM Z">{data_item.date}</Moment></h5>
-        </div>
+        </div>        
         <div className={styles.content}>
           <div>Nhiễm bệnh:&nbsp; <span className={styles.new_confirmed}>{data_item.confirmed}</span></div>
           <div>Hồi phục:&nbsp; <span className={styles.new_recovered}>{data_item.recovered}</span></div>

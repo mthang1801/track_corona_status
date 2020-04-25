@@ -5,7 +5,7 @@ const Navbar = () => {
   return (
     <ul>
       <li >
-        <Link to="/global">Số liệu</Link>
+        <Link to="/global">Dữ liệu</Link>
       </li>
       <li>
         <Link to="/countries">Quốc gia</Link>

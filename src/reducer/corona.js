@@ -26,7 +26,13 @@ export default function(state=initialState, action){
         ...state,
         data_item : payload ,
         loading :false
-      }
+      };
+    case types.DATA_COUNTRY :
+      return {
+        ...state ,
+        loading : false,
+        country : payload
+      };
     case types.DATA_ERROR :    
       return{
         new_update : null ,

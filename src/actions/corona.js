@@ -2,7 +2,6 @@ import * as types from "./types";
 import axios from "axios";
 import _ from "lodash";
 
-const url = "https://covid19.mathdro.id/api";
 const url_history = "https://corona-api.com";
 export const loadData = () =>  async dispatch => {
   try {   
@@ -43,7 +42,7 @@ export const loadData = () =>  async dispatch => {
     countries = _.sortBy(countries, (country => -country.latest_data.confirmed))
     dispatch({
       type : types.LOADED_DATA,
-      payload : {new_update, histories : histories , countries}
+      payload : {new_update, histories : histories , countries , country : {timeline : histories}}
     })
   } catch (error) {    
     dispatch({
@@ -58,4 +57,34 @@ export const getDataItem = data => dispatch => {
     type : types.DATA_ITEM,
     payload : data
   })
+}
+
+export const getCountryData = countryCode => async dispatch => {
+  let url = "";
+  switch(countryCode){
+    case "GB" : url = `${url_history}/timeline`; break;
+    case "VN" : url = `${url_history}/countries/VN` ; break;
+    default : url = `${url_history}/countries/${countryCode}`;
+  }
+  try {
+    let res = await axios.get(url);
+    console.log(res.data);
+    if(countryCode === "GB"){
+      dispatch({
+        type : types.DATA_COUNTRY,
+        payload : {timeline : res.data.data}
+      })
+    }else{
+      dispatch({
+        type : types.DATA_COUNTRY,
+        payload : res.data.data
+      })
+    }
+  } catch (error) {
+    dispatch({
+      type : types.DATA_ERROR,
+      payload : {msg : error.response.statusText, status : error.response.status}
+    })
+  }
+  
 }

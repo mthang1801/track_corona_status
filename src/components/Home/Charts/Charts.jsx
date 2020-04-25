@@ -13,21 +13,32 @@ import Typography from '@material-ui/core/Typography';
 import Box from '@material-ui/core/Box';
 import Public from "@material-ui/icons/Public"
 import Flag from "react-world-flags";
-
+import {getCountryData} from "../../../actions/corona";
+import Spinner from "../../Layout/Spinner/Spinner";
+import withWidth from "@material-ui/core/withWidth";
 function TabPanel(props) {
   const { children, value, index, ...other } = props;
-
+  if(value !== index){
+    return (
+      <div
+        style={{display : "none"}}        
+       
+      >
+      {value === index && <div className={styles.line_chart}>        
+        {children}        
+      </div>}
+    </div>
+    )
+  }
   return (
-    <Typography
-      component="div"
-      role="tabpanel"
-      hidden={value !== index}
-      id={`scrollable-prevent-tabpanel-${index}`}
-      aria-labelledby={`scrollable-prevent-tab-${index}`}
-      {...other}
+    <div
+      style={{display : "block"}}
+     
     >
-      {value === index && <Box p={3}>{children}</Box>}
-    </Typography>
+      {value === index && <div className={styles.line_chart}>        
+        {children}        
+      </div>}
+    </div>
   );
 };
 TabPanel.propTypes = {
@@ -55,25 +66,93 @@ const useStyles = makeStyles((theme) => ({
   }
 }));
 
-const Chart = ({corona : {histories, new_update, countries}}) => {
+const Chart = ({corona : {histories, new_update, countries, country},getCountryData, width}) => {
   const classes = useStyles();
   const [value, setValue] = React.useState(0);
+
+  React.useEffect(() => {   
+    async function fetchData(){     
+      if(value === 0 ){
+        await getCountryData("GB");
+      }else if(value === 6) {
+        await getCountryData("VN");
+      }else{
+        await getCountryData(countries[value-1].code);
+      }      
+    }
+    fetchData();    
+  }, [value]);
+
   const handleChange = (event, newValue) => {
     setValue(newValue);
   };
-
   const topCountries = [];
   for(let i = 0 ; i < 5 ; i++){
     topCountries.push(countries[i]);
   }
+  console.log(topCountries);
   const vn_region = countries.find(country => country.code === "VN");
   if(vn_region){
     topCountries.push(vn_region);
   }
-
-  console.log(topCountries);
+  
+  let ascendingTimeLine = [...country.timeline];
+  ascendingTimeLine.reverse();
+  console.log(ascendingTimeLine);
+  console.log(value);
+  const lineChartCountry = (  
+    <div className={styles.line_chart}>
+      <Line
+        height={null}        
+        options={{
+          responsive : true ,
+          maintainAspectRatio: false,
+          scales :{
+            xAxes : [{
+              ticks : {
+                fontSize : 10
+              },              
+            }],
+            yAxes : [{
+              ticks : {
+                fontSize : 10,
+                
+              }
+            }]
+          }
+        }}
+        data={{
+          labels : ascendingTimeLine.map(({date}) => date),
+          datasets: [
+            {
+              label: "Xác nhận" ,
+              data : ascendingTimeLine.map(({confirmed}) => confirmed),              
+              backgroundColor : "rgba(150,150,150,.7)",   
+              fill : "none",   
+              pointBorderWidth: 1,                          
+            },
+            {
+              label: "Hồi phục" ,
+              data : ascendingTimeLine.map(({recovered}) => recovered),
+              backgroundColor : "rgba(0,255,0,.7)",                 
+            },
+            {
+              label : "Tử vong",
+              data : ascendingTimeLine.map(({deaths}) => deaths),
+              backgroundColor : "rgba(255, 0, 0,.8)",                 
+            },
+          ]
+        }}
+      />   
+    </div>
+    
+  )
+  if(!country){
+    return <Spinner/>
+  }
   return (
    <React.Fragment>
+    <h2 className={styles.title}>BIỂU ĐỒ DỊCH TRÊN TOÀN CẦU VÀ MỘT SỐ QUỐC GIA</h2>
     <div className={classes.root}>     
       <AppBar position="static" color="inherit">
         <Tabs
@@ -81,37 +160,22 @@ const Chart = ({corona : {histories, new_update, countries}}) => {
           onChange={handleChange}
           variant="scrollable"
           scrollButtons="off"
-          aria-label="scrollable prevent tabs example"
-          color
+          aria-label="scrollable prevent tabs example"          
         >
-          <Tab icon={<Public/>} aria-label="phone" {...a11yProps(0)} classes={{root :classes.tab}} />
+          <Tab icon={<Public style={{color: "rgba(0,0,255,.8)"}}/>} aria-label="phone" {...a11yProps(0)} classes={{root :classes.tab}} />
           {topCountries.map( (country, index) => (
             <Tab key={country.code} icon={<Flag code={country.code} height={16}/>}  aria-label={country.name} {...a11yProps(index+1)} classes={{root :classes.tab}} />
-          ))}        
+          ))}              
         </Tabs>
       </AppBar>
-      <TabPanel value={value} index={0}>
-        Item One
-      </TabPanel>
-      
-      <TabPanel value={value} index={1}>
-        Item Two
-      </TabPanel>
-      <TabPanel value={value} index={2}>
-        Item Three
-      </TabPanel>
-      <TabPanel value={value} index={3}>
-        Item Four
-      </TabPanel>
-      <TabPanel value={value} index={4}>
-        Item Five
-      </TabPanel>
-      <TabPanel value={value} index={5}>
-        Item Six
-      </TabPanel>
-      <TabPanel value={value} index={6}>
-        Item Seven
-      </TabPanel>
+      <TabPanel value={value} index={0}>        
+          {lineChartCountry}             
+        </TabPanel>
+      {topCountries.map( (country, index) => (
+        <TabPanel value={value} index={index+1}>
+          {lineChartCountry}
+        </TabPanel>
+      ))}      
       
     </div>
    </React.Fragment>
@@ -120,11 +184,13 @@ const Chart = ({corona : {histories, new_update, countries}}) => {
 
 Chart.propTypes = {
   corona : PropTypes.object.isRequired,
-  page : PropTypes.object.isRequired
+  page : PropTypes.object.isRequired,
+  getCountryData : PropTypes.func.isRequired,
+  width : PropTypes.oneOf(['lg', 'md', 'sm', 'xl', 'xs']).isRequired,
 }
 
 const mapStateToProps = state =>({
   corona : state.corona,
   page : state.page
 })
-export default connect(mapStateToProps)(Chart);
+export default withWidth()(connect(mapStateToProps,{getCountryData})(Chart));
