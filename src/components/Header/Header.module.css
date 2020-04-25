@@ -1,0 +1,24 @@
+.title{
+  color: rgba(0,0,0,.6);
+  margin : 1rem 0 0 0;
+  font-size : 1.8em;
+}
+
+.subtitle{
+  color : rgba(0,0,0,.5);
+  margin-bottom : 1rem;
+  font-size : 1.1em;
+}
+
+.animation{
+  animation: animation 1.25s ease ;
+}
+
+@keyframes animation{
+  0%{
+    opacity: 0;
+  }
+  100%{
+    opacity: 1;
+  }
+}

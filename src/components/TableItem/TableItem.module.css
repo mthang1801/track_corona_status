@@ -1,0 +1,7 @@
+.row:nth-child(even){
+  background-color: #cceeff;
+}
+
+.row:nth-child(odd){
+  background-color: #f9ffc2;
+}
