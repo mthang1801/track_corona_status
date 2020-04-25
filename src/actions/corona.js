@@ -23,7 +23,6 @@ export const loadData = () =>  async dispatch => {
     //get countries
     res = await axios.get(`${url_history}/countries`);
     let countries = res.data.data;
-    console.log(countries)
     
     let totalCritical = _.sumBy(countries, (country => country.latest_data.critical));
     let totalActive = _.sumBy(countries, (({latest_data}) => latest_data.confirmed - latest_data.recovered -latest_data.deaths));
@@ -31,14 +30,17 @@ export const loadData = () =>  async dispatch => {
     let recovered = _.sumBy(countries, (({latest_data}) => latest_data.recovered));
     let deaths = _.sumBy(countries, (({latest_data}) => latest_data.deaths));
     
-     //get new update
-     let new_update ={} ;
+    //get new update
+    let new_update ={} ;
     new_update.totalActive = totalActive;
     new_update.totalCritical = totalCritical;
     new_update.confirmed = confirmed;
     new_update.recovered = recovered;
     new_update.deaths = deaths;
     new_update.date = histories[0].date;
+
+    //Sort number of confirmed by country
+    countries = _.sortBy(countries, (country => -country.latest_data.confirmed))
     dispatch({
       type : types.LOADED_DATA,
       payload : {new_update, histories : histories , countries}

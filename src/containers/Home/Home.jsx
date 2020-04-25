@@ -1,5 +1,6 @@
 import React , {useEffect} from 'react'
-import {Header, Spinner, Navbar, CardsHome, Chart} from "../../components";
+import {Header, Navbar, CardsHome, Charts, StatisticCards} from "../../components/Home";
+import {Spinner} from "../../components";
 import {connect} from "react-redux";
 import PropTypes from "prop-types";
 import {changePage} from "../../actions/page";
@@ -16,7 +17,8 @@ const Home = ({corona : {loading}, history,changePage}) => {
       <Header/>
       <Navbar/>
       <CardsHome/>
-      <Chart/>
+      <StatisticCards/>
+      <Charts/>
     </div>
   )
 }
