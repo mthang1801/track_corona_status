@@ -1,5 +1,6 @@
 import React , {useEffect} from 'react'
-import {Header, Spinner, Navbar, CardsHome, Chart} from "../../components";
+import {Header, Navbar, CardsHome, Chart} from "../../components/Home";
+import {Spinner} from "../../components";
 import {connect} from "react-redux";
 import PropTypes from "prop-types";
 import {changePage} from "../../actions/page";
