@@ -5,21 +5,26 @@ import {connect} from "react-redux";
 import PropTypes from "prop-types";
 import {changePage} from "../../actions/page";
 import {withRouter} from "react-router-dom";
-const Home = ({corona : {loading}, history,changePage}) => {
+import {Link} from "react-router-dom";
+import styles from "./Home.module.css";
+const Home = ({corona : {loading, home_country}, history,changePage}) => {
   useEffect(() => {      
     changePage("/");
   }, [])
-  if(loading){
+  if(loading || !home_country){
     return <Spinner/>
   }
   return (
-    <div className="container">      
+    <React.Fragment>
       <Header/>
-      <Navbar/>
-      <CardsHome/>
-      <StatisticCards/>
-      <Charts/>
-    </div>
+      <div className="container">              
+        <Navbar/>
+        <CardsHome/>
+        <StatisticCards/>
+        <Charts/>
+        <Link to="/countries" className={styles.link}>Xem thêm các quốc gia</Link>
+      </div>
+    </React.Fragment>
   )
 }
 

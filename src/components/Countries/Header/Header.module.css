@@ -1,0 +1,12 @@
+.container{
+  text-align: center;
+}
+
+.title{
+  font-size : 2em;
+  text-transform: uppercase;
+}
+
+.country{
+  color : rgba(0,0,255,.8)
+}

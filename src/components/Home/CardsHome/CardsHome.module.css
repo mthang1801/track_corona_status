@@ -44,11 +44,40 @@
   padding : 1rem 2rem;
 }
 
-@media (min-width:1281px) {
+@media (max-width:1281px) {
   .card {
-    width : 100% !important;
+    width : 600px !important;
+    padding : 3rem 4rem;
   }
 }
+
+
+@media (max-width :992px){
+  .card{
+    width : 500px !important;
+    padding : 3rem 4rem;
+  }
+}
+
+@media (max-width:767px ){
+  .card{
+    width : 400px !important;
+    padding : 3rem 4rem;
+  }
+}
+
+@media (max-width:500px){
+  .card{
+    width : 90% !important ;
+    text-align: center;  
+    padding : 2.5rem 3.5rem;  
+  }
+  .grid{
+    margin-bottom: .15rem !important;
+  }
+}
+
+
 
 @media (max-width: 1280px)and (min-width: 961px){
   .card{
@@ -57,28 +86,3 @@
   }
 }
 
-@media (max-width: 960px) and (min-width: 768px){
-  .card{
-    width : 500px;
-    padding : 3rem 4rem;
-  }
-}
-
-@media (max-width:767px ) and (min-width: 600px){
-  .card{
-    width : 400px;
-    padding : 3rem 4rem;
-  }
-}
-
-@media (max-width:600px){
-  .card{
-    width : 100%;
-    text-align: center;  
-    padding : 2.5rem 3.5rem;  
-  }
-  .grid{
-    margin-bottom: .15rem !important;
-  }
-
-}

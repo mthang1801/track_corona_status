@@ -5,7 +5,7 @@ import { ThemeProvider } from '@material-ui/styles';
 import {Provider} from "react-redux";
 import {BrowserRouter as Router, Route, Switch, Link} from "react-router-dom";
 import "./App.css";
-import {Home, Global} from "./containers"
+import {Home, Global, Countries} from "./containers"
 import {loadData} from "./actions/corona";
 
 const THEME = createMuiTheme({
@@ -28,6 +28,7 @@ const App = () => {
           <Switch>
             <Route exact path="/" component={Home} />
             <Route path="/global" component={Global}/>
+            <Route path="/countries" component={Countries}/>
           </Switch>
         </Router>
       </Provider>

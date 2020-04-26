@@ -1,5 +1,3 @@
-
 export {default as Spinner} from "./Layout/Spinner/Spinner";
-export {default as Tables} from "./Tables/Tables";
-export {default as TableItem} from "./TableItem/TableItem";
-export {default as CardDetails} from "./CardDetails/CardDetails";
+export {default as Tables} from "./Global/Tables/Tables";
+export {default as CardDetails} from "./Global/CardDetails/CardDetails";

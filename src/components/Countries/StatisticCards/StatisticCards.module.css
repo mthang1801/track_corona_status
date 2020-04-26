@@ -52,13 +52,12 @@
 }
 
 .card{  
-
   position :relative;  
   margin-bottom : 3rem;
   border : 1px solid rgba(150,150,150, .4);
+  box-shadow : 0 4px 8px rgba(0,0,0,.2);
+  border-radius : 5px;
 }
-
-
 .card_header{
   font-size : 1.75em;
   font-weight : 600;
@@ -92,50 +91,68 @@
   margin : 1.25rem;
 }
 
-.detail_mild_num{
+.first_detail_digit{
+  font-size : 1.3em;
+  font-weight: 600;
+}
+
+.second_detail_digit{
+  font-size : 1.35em;
+  font-weight: 600;
+}
+
+.mild_status{
   color : rgba(0,150,255, .9);
-  font-size : 1.3em;
-  font-weight: 600;
+}
+.critical_status{
+  color :rgba(255,0,0,.8);
 }
 
-.detail_crit_num{
-  color : rgba(255,0,0,.8);
-  font-size : 1.35em;
-  font-weight: 600;
-}
-
-.detail_recovered_num{
+.recovered_status{
   color : rgba(0,255,0,.8);
-  font-size : 1.3em;
-  font-weight: 600;
 }
-
-.detail_deaths_num{
+.deaths_status{
   color : rgba(100,100,100,.8);
-  font-size : 1.35em;
-  font-weight: 600;
 }
 
+.cases_status{
+  color : rgba(255, 89, 0,.8);
+}
+
+.normal_status{
+  color : rgba(125, 242, 0,.8)
+}
 .card_action{
   position : absolute;  
   font-size : 1.2rem;
   bottom : 7.5%;
   text-transform: translate(-50%);
-  /* margin-top : 55%; */
-  left : 40%;
+  left : 42.5%;
   text-align : left;
 
 }
-@media (max-width:768px){  
+@media (max-width:767px){  
   .card{  
-    width: 100%;
+    width: 450px;
     height: 350px;
+    margin : 2rem auto;
   }
-  .line_chart{
+  .pieChartActiveCase{
     width : 100%;
-    height : 400px !important;
+    height: 300px;
   }
-  
+  .pieChartClosedCase{
+    width : 100%;
+    height: 300px;
+  }
+  .pieChartCasesRate{
+    width : 100%;
+    height: 300px;
+  }
+  .pieChartClosedCase{
+    width : 100%;
+    height: 300px;
+  }
 }
 
 @media (max-width:500px){
@@ -143,26 +160,49 @@
     width : 100%;
     height: 250px;
     margin-bottom : 3rem;
-  }  
-  .line_chart{
-    width : 100%;
-    height: 250px !important;
   }
-  
+  .pieChartActiveCase{
+    width : 100%;
+    height: 300px;
+  }
+  .pieChartClosedCase{
+    width : 100%;
+    height: 300px;
+  }
+  .card_action{
+    left:  40%;
+  }
+  .hide_sm{
+    display : none;
+  }
 }
 
 @media (min-width: 768px){
-  
   .card{
     display : block;
-    width : 80%;
-    height : 350px;
+    width : 70%;
+    height : 450px;
     margin : auto;
     margin-bottom: 5rem;
   }
-  .line_chart{
+  .card_action{
+    left : 43.5%;
+  }
+  .pieChartActiveCase{
     width : 100%;
-    height : 400px !important;  
+    height: 200px;
+  }
+  .pieChartClosedCase{
+    width : 100%;
+    height: 200px;
+  }
+  .pieChartCasesRate{
+    width : 100%;
+    height: 200px;
+  }
+  .pieChartDeathsRate{
+    width : 100%;
+    height: 200px;
   }
 }
 
@@ -171,13 +211,28 @@
     width : 45%;
     height : 400px;
   }
+  .pieChartClosedCase{
+    width : 100%;
+    height: 300px;
+  }
   .pieChartActiveCase{
     width : 100%;
-    height: 400px;
+    height: 300px;
   }
-  .chartjs-size-monitor{
+  .pieChartClosedCase{
     width : 100%;
-    height : 450px;
+    height: 300px;
+  }
+  .pieChartCasesRate{
+    width : 100%;
+    height: 300px;
+  }
+  .pieChartDeathsRate{
+    width : 100%;
+    height: 300px;
+  }
+  .card_action{
+    left : 42%;
   }
 }
 
@@ -188,11 +243,22 @@
   }
   .pieChartActiveCase{
     width : 100%;
-    height: 400px;
+    height: 300px;
   }
-  .chartjs-size-monitor{
-    width: 100%;
-    height: 500px;
+  .pieChartClosedCase{
+    width : 100%;
+    height: 300px;
+  }
+  .pieChartCasesRate{
+    width : 100%;
+    height: 300px;
+  }
+  .pieChartDeathsRate{
+    width : 100%;
+    height: 300px;
+  }
+  .card_action{
+    left : 40%;
   }
 }
 
@@ -206,9 +272,21 @@
     width : 100%;
     height: 500px;
   }
-  .chartjs-size-monitor{
-    width: 100%;
-    height: 650px;
+  .pieChartClosedCase{
+    width : 100%;
+    height: 500px;
+  }
+  .pieChartCasesRate{
+    width : 100%;
+    height: 500px;
+  }
+  .pieChartDeathsRate{
+    width : 100%;
+    height: 500px;
+  }
+  
+  .card_action{
+    left : 42%;
   }
 }
 

@@ -11,15 +11,15 @@ import TablePagination from '@material-ui/core/TablePagination';
 import TableRow from '@material-ui/core/TableRow';
 import withWidth from '@material-ui/core/withWidth';
 import PropTypes from "prop-types";
-import {TableItem} from "../../components";
+import TableItem from "../TableItem/TableItem";
 import styles from "./Tables.module.css";
 const useStyles = makeStyles({
   root: {
     width: '100%',
-    margin : "2rem 0 5rem 0"  
+    margin : "2rem 0 5rem 0"
   },
   container: {
-    maxHeight: 500,
+    maxHeight: 600,
   },
 });
 
@@ -48,8 +48,7 @@ const Tables = ({corona : {histories} , width}) => {
       case "new_deaths" : return "Tử vong trong ngày";
       default : return null ;
     }
-  })
-  console.log(labels_vi);
+  });
   return (
     <Paper className={classes.root}>
     <TableContainer className={classes.container}>

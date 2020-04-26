@@ -5,23 +5,12 @@ const Navbar = () => {
   return (
     <ul>
       <li >
-        <Link to="/global">Dữ liệu</Link>
+        <Link to="/global">Dữ liệu toàn cầu</Link>
       </li>
       <li>
-        <Link to="/countries">Quốc gia</Link>
+        <Link to="/countries">Dữ liệu Quốc gia</Link>
       </li>
-      <li>
-        <Link to="/statistic">Bảng thống kê</Link>
-      </li>
-      <li className="hide-xs">
-        <Link to="/symptoms">Triệu chứng</Link>
-      </li>
-      <li className="hide-sm hide-xs">
-        <Link to="/instructs">Chỉ dẫn</Link>
-      </li>
-      <li className="hide-sm hide-xs">
-        <Link to="/news">Tin tức</Link>
-      </li>
+      
     </ul>
   )
 }

@@ -5,7 +5,7 @@ import PropTypes from "prop-types";
 import TableRow from '@material-ui/core/TableRow';
 import TableCell from '@material-ui/core/TableCell';
 import {v4 as uuid} from "uuid";
-import {getDataItem} from "../../actions/corona";
+import {getDataItem} from "../../../actions/corona";
 import {connect} from "react-redux";
 import styles from "./TableItem.module.css";
 import CountUp from 'react-countup';

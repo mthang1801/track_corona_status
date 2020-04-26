@@ -13,33 +13,24 @@ import Typography from '@material-ui/core/Typography';
 import Box from '@material-ui/core/Box';
 import Public from "@material-ui/icons/Public"
 import Flag from "react-world-flags";
-import {getCountryData} from "../../../actions/corona";
+import {getHomeCountryData} from "../../../actions/corona";
 import Spinner from "../../Layout/Spinner/Spinner";
 import withWidth from "@material-ui/core/withWidth";
 function TabPanel(props) {
-  const { children, value, index, ...other } = props;
-  if(value !== index){
+  const { classes , children, value, index, ...other } = props;
+
     return (
-      <div
-        style={{display : "none"}}        
-       
-      >
-      {value === index && <div className={styles.line_chart}>        
-        {children}        
-      </div>}
-    </div>
+      <Typography
+      component="div"
+      role="tabpanel"
+      hidden={value !== index}
+      id={`scrollable-auto-tabpanel-${index}`}
+      aria-labelledby={`scrollable-auto-tab-${index}`}
+      {...other}
+     >
+      {value === index && <Box p={3}>{children}</Box>}
+    </Typography>
     )
-  }
-  return (
-    <div
-      style={{display : "block"}}
-     
-    >
-      {value === index && <div className={styles.line_chart}>        
-        {children}        
-      </div>}
-    </div>
-  );
 };
 TabPanel.propTypes = {
   children: PropTypes.node,
@@ -63,21 +54,21 @@ const useStyles = makeStyles((theme) => ({
   tab: {
     width : 75,
     minWidth :75
-  }
+  },
 }));
 
-const Chart = ({corona : {histories, new_update, countries, country},getCountryData, width}) => {
+const Chart = ({corona : {histories, new_update, countries, home_country},getHomeCountryData, width}) => {
   const classes = useStyles();
   const [value, setValue] = React.useState(0);
 
-  React.useEffect(() => {   
+  React.useEffect(() => {      
     async function fetchData(){     
       if(value === 0 ){
-        await getCountryData("GB");
+        await getHomeCountryData("GB");
       }else if(value === 6) {
-        await getCountryData("VN");
-      }else{
-        await getCountryData(countries[value-1].code);
+        await getHomeCountryData("VN");
+      }else{        
+        await getHomeCountryData(countries[value].code);
       }      
     }
     fetchData();    
@@ -87,38 +78,44 @@ const Chart = ({corona : {histories, new_update, countries, country},getCountryD
     setValue(newValue);
   };
   const topCountries = [];
-  for(let i = 0 ; i < 5 ; i++){
+  for(let i = 1 ; i < 6 ; i++){
     topCountries.push(countries[i]);
   }
-  console.log(topCountries);
+
   const vn_region = countries.find(country => country.code === "VN");
   if(vn_region){
     topCountries.push(vn_region);
   }
+
   
-  let ascendingTimeLine = [...country.timeline];
+  let ascendingTimeLine = [...home_country.timeline];
   ascendingTimeLine.reverse();
-  console.log(ascendingTimeLine);
-  console.log(value);
+ 
+ 
   const lineChartCountry = (  
     <div className={styles.line_chart}>
-      <Line
-        height={null}        
+      <Line         
         options={{
           responsive : true ,
           maintainAspectRatio: false,
           scales :{
-            xAxes : [{
+            xAxis : [{
               ticks : {
                 fontSize : 10
-              },              
+              },             
+              gridLineWidth: 0,               
             }],
-            yAxes : [{
+            yAxis : [{
               ticks : {
-                fontSize : 10,
-                
-              }
+                fontSize : 10,                
+              },
+              gridLineWidth: 0,
             }]
+          },
+          elements : {
+            point : {
+              radius : 2
+            }
           }
         }}
         data={{
@@ -127,19 +124,20 @@ const Chart = ({corona : {histories, new_update, countries, country},getCountryD
             {
               label: "Xác nhận" ,
               data : ascendingTimeLine.map(({confirmed}) => confirmed),              
-              backgroundColor : "rgba(150,150,150,.7)",   
+              strokeColor : "rgba(80,80,80)",
+              showLine: true,
               fill : "none",   
               pointBorderWidth: 1,                          
             },
             {
               label: "Hồi phục" ,
               data : ascendingTimeLine.map(({recovered}) => recovered),
-              backgroundColor : "rgba(0,255,0,.7)",                 
+              backgroundColor : "rgba(0,255,0,.8)",                 
             },
             {
               label : "Tử vong",
               data : ascendingTimeLine.map(({deaths}) => deaths),
-              backgroundColor : "rgba(255, 0, 0,.8)",                 
+              backgroundColor : "rgba(255, 0, 0)",                              
             },
           ]
         }}
@@ -147,7 +145,7 @@ const Chart = ({corona : {histories, new_update, countries, country},getCountryD
     </div>
     
   )
-  if(!country){
+  if(!home_country){
     return <Spinner/>
   }
   return (
@@ -159,7 +157,8 @@ const Chart = ({corona : {histories, new_update, countries, country},getCountryD
           value={value}
           onChange={handleChange}
           variant="scrollable"
-          scrollButtons="off"
+          scrollButtons="on"
+          indicatorColor="primary"          
           aria-label="scrollable prevent tabs example"          
         >
           <Tab icon={<Public style={{color: "rgba(0,0,255,.8)"}}/>} aria-label="phone" {...a11yProps(0)} classes={{root :classes.tab}} />
@@ -168,11 +167,11 @@ const Chart = ({corona : {histories, new_update, countries, country},getCountryD
           ))}              
         </Tabs>
       </AppBar>
-      <TabPanel value={value} index={0}>        
+      <TabPanel value={value} index={0} classes={classes} >        
           {lineChartCountry}             
         </TabPanel>
       {topCountries.map( (country, index) => (
-        <TabPanel value={value} index={index+1}>
+        <TabPanel key={index+1} value={value} index={index+1} classes={classes}>
           {lineChartCountry}
         </TabPanel>
       ))}      
@@ -185,7 +184,7 @@ const Chart = ({corona : {histories, new_update, countries, country},getCountryD
 Chart.propTypes = {
   corona : PropTypes.object.isRequired,
   page : PropTypes.object.isRequired,
-  getCountryData : PropTypes.func.isRequired,
+  getHomeCountryData : PropTypes.func.isRequired,
   width : PropTypes.oneOf(['lg', 'md', 'sm', 'xl', 'xs']).isRequired,
 }
 
@@ -193,4 +192,4 @@ const mapStateToProps = state =>({
   corona : state.corona,
   page : state.page
 })
-export default withWidth()(connect(mapStateToProps,{getCountryData})(Chart));
+export default withWidth()(connect(mapStateToProps,{getHomeCountryData})(Chart));

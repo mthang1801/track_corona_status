@@ -33,13 +33,17 @@ a{
   text-decoration: none;
 }
 
+@media(max-width: 500px){
+  :root{
+    font-size : 12px !important;
+  }
+}
+
 @media (max-width: 600px){
   .container{
     width: 90%;
   }
-  :root{
-    font-size : 10px !important;
-  }
+
   .hide-xs{
     display: none !important;
   }
