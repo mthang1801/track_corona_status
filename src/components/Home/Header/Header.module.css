@@ -1,24 +1,91 @@
+:root {
+  font-size : 16px;
+}
+
+.header{
+  background : linear-gradient(to right bottom, rgba(50,50,50,.8), rgba(20,20,20,.8)), url("../../../coronavirus-COVID-19.jpg");
+  background-position: top;
+  background-size: cover;
+  height: 80vh;
+  width : 100%;
+  margin :0 auto 3rem auto;
+  clip-path: ellipse(73% 79% at 48% 20%);
+  position :relative;
+}
+
 .title{
-  color: rgba(0,0,0,.6);
-  margin : 1rem 0 0 0;
-  font-size : 1.8em;
+  padding-top : 5rem;
+  color : #fff;
+  text-transform: uppercase;
+  position :absolute ;
 }
 
-.subtitle{
-  color : rgba(0,0,0,.5);
-  margin-bottom : 1rem;
-  font-size : 1.1em;
+.main{
+  font-size : 4em;  
+  margin-left :5%;
+  float : left; 
+  margin-bottom : 2rem;
+  animation: main-title 1s ease-out;
 }
 
-.animation{
-  animation: animation 1.25s ease ;
-}
-
-@keyframes animation{
+@keyframes main-title{
   0%{
-    opacity: 0;
+    transform: translateX(-10rem);
+  }
+  70%{
+    transform: translateX(5rem);
   }
   100%{
-    opacity: 1;
+    transform: translateX(0)
+  }
+}
+
+.sub{
+  font-size : 3.5em;   
+  margin-right : 5%;
+  float : right;
+  animation: sub-title 1.2s ease-in 1s 1;
+  animation-fill-mode: backwards;
+}
+
+@keyframes sub-title{
+  0%{
+    transform: translateX(20rem);
+    opacity : 0;
+  }
+  70%{
+    transform: translateX(-5rem);
+    opacity: .7;
+  }
+  100%{
+    transform: translateX(0);
+    opacity : 1
+  }
+}
+
+@media (max-width:500px){
+  :root{
+    font-size : 12px;
+  }
+  .title{
+    text-align: center;
+    margin-top : 5rem;
+  }
+  .main{
+    clear: float;
+    font-size : 4em;
+  }
+  .sub{
+    clear : float ;
+    font-size : 3.5em;
+  }
+}
+
+@media (max-width:768px){
+  .main{
+    font-size : 3em;
+  }
+  .sub{
+    font-size: 2.5em;
   }
 }

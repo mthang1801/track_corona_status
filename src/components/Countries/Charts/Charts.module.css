@@ -1,0 +1,34 @@
+.line_chart{
+  margin : 3rem;
+}
+
+@media (max-width:500px){
+  .line_chart{
+    height : 250px !important;
+  }
+}
+@media (max-width:767px){
+  .line_chart{
+    height : 350px !important;
+  }
+}
+@media (min-width:768px){
+  .line_chart{
+    height : 400px !important;
+  }
+}
+@media (min-width:992px){
+  .line_chart{
+    height : 450px !important;
+  }
+}
+@media (min-width:1280px){
+  .line_chart{
+    height : 500px !important;
+  }
+}
+@media (min-width:1920px){
+  .line_chart{
+    height : 600px !important;
+  }
+}

@@ -3,9 +3,10 @@ import axios from "axios";
 import _ from "lodash";
 
 const url_history = "https://corona-api.com";
+
 export const loadData = () =>  async dispatch => {
   try {   
-   
+    
     //get history     
     let res = await axios.get(`${url_history}/timeline`);  
     let histories = res.data.data.map( data => ({
@@ -17,7 +18,7 @@ export const loadData = () =>  async dispatch => {
       new_deaths : data.new_deaths,
       new_recovered : data.new_recovered,
       date : data.date
-    }))
+    }))  
     
     //get countries
     res = await axios.get(`${url_history}/countries`);
@@ -39,10 +40,46 @@ export const loadData = () =>  async dispatch => {
     new_update.date = histories[0].date;
 
     //Sort number of confirmed by country
-    countries = _.sortBy(countries, (country => -country.latest_data.confirmed))
+    countries = _.sortBy(countries, (country => -country.latest_data.confirmed));
+    countries = countries.map( country => {
+      country.latest_data.calculated.deaths_per_mllion_population = Math.round(country.latest_data.deaths / country.population * 1000000);
+      return country;
+    })
+  
+    //get population
+    let config = {
+      headers : {
+        "x-rapidapi-host": "world-population.p.rapidapi.com",
+        "x-rapidapi-key": "ccc2cdf0f3msh4d43c21dd521c22p113ff2jsnf92455d7ae64"
+      }
+    }
+    res = await axios.get("https://world-population.p.rapidapi.com/worldpopulation", config);
+    let world_population = res.data.body.world_population;
+    let world = {
+      name : "World",
+      population : world_population,
+      updated_at : countries[0].updated_at,
+      today : {
+        deaths : _.sumBy(countries , country => country.today.deaths),
+        confirmed : _.sumBy(countries, country => country.today.confirmed)
+      },
+      latest_data : {
+        deaths :  _.sumBy(countries , country => country.latest_data.deaths),
+        confirmed :  _.sumBy(countries , country => country.latest_data.confirmed),
+        recovered :  _.sumBy(countries , country => country.latest_data.recovered),
+        critical :  _.sumBy(countries , country => country.latest_data.critical),        
+      }
+    };
+    world.latest_data.calculated = {
+      death_rate : world.latest_data.deaths / world.latest_data.confirmed,
+      recovery_rate : world.latest_data.recovered / world.latest_data.recovered,
+      cases_per_million_population :Math.round( world.latest_data.confirmed / world.population * 1000000),
+      deaths_per_mllion_population : Math.round(world.latest_data.deaths / world.population * 1000000)
+    }
+    countries.unshift(world);
     dispatch({
       type : types.LOADED_DATA,
-      payload : {new_update, histories : histories , countries , country : {timeline : histories}}
+      payload : {new_update, histories : histories , countries , home_country : {timeline : histories}}
     })
   } catch (error) {    
     dispatch({
@@ -59,24 +96,24 @@ export const getDataItem = data => dispatch => {
   })
 }
 
-export const getCountryData = countryCode => async dispatch => {
+export const getHomeCountryData = countryCode => async dispatch => {
   let url = "";
   switch(countryCode){
     case "GB" : url = `${url_history}/timeline`; break;
     case "VN" : url = `${url_history}/countries/VN` ; break;
     default : url = `${url_history}/countries/${countryCode}`;
   }
+  
   try {
-    let res = await axios.get(url);
-    console.log(res.data);
+    let res = await axios.get(url);   
     if(countryCode === "GB"){
       dispatch({
-        type : types.DATA_COUNTRY,
+        type : types.DATA_HOME_COUNTRY,
         payload : {timeline : res.data.data}
       })
     }else{
       dispatch({
-        type : types.DATA_COUNTRY,
+        type : types.DATA_HOME_COUNTRY,
         payload : res.data.data
       })
     }
@@ -86,5 +123,45 @@ export const getCountryData = countryCode => async dispatch => {
       payload : {msg : error.response.statusText, status : error.response.status}
     })
   }
+}
+
+export const clearCountry = () => dispatch => {  
+  dispatch({
+    type : types.CLEAR_COUNTRY
+  })
+}
+
+export const loadHomePage = () => dispatch => {
+  dispatch({
+    type : types.LOAD_HOME
+  })
+}
+
+export const getCountryData = code => async dispatch => {
   
+  try {
+    let res = await axios.get(`${url_history}/countries/${code}`);
+    if(code){
+      dispatch({
+        type : types.DATA_COUNTRY,
+        payload : res.data.data
+      })
+      return;
+    }
+    dispatch({
+      type : types.DATA_COUNTRY
+    })
+   
+  } catch (error) {
+    dispatch({
+      type : types.DATA_ERROR,
+      payload : {msg : error.response.statusText, status : error.response.status}
+    })
+  }
+}
+
+export const  getDefaultCountryData = () => dispatch => {
+  dispatch({
+    type : types.DEFAULT_DATA_COUNTRY
+  })
 }

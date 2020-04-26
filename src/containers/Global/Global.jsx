@@ -5,7 +5,7 @@ import PropTypes from "prop-types";
 import {withRouter} from "react-router-dom";
 import styles from "./Global.module.css";
 import {changePage} from "../../actions/page";
-import {Tables, Chart, CardDetails, Spinner} from "../../components";
+import {Tables, CardDetails, Spinner} from "../../components";
 import {getDataItem}  from "../../actions/corona";
 
 const Global = ({corona : {new_update, histories, data_item}, changePage, getDataItem}) => {  
