@@ -175,9 +175,25 @@ const Tables = ({countries, getCountryData, width, getDefaultCountryData}) => {
             <TableBody>
               {searchResults.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage).map((row) => {
                 return (
-                  <TableRow hover role="checkbox" tabIndex={-1} key={row.name} style={{cursor: "pointer"}} onClick={handleClick(row.name)}>
+                  <TableRow hover role="checkbox" tabIndex={-1} key={row.name} style={{cursor: "pointer"}} onClick={handleClick(row.name)} className={styles.table_row}>
                     {columns.map((column) => {
-                      const value = row[column.id];    
+                      const value = row[column.id];  
+                      if(width === "xs"){
+                        if(column.id === "deaths"){
+                          return (                         
+                            <TableCell key={column.id} align="center" style={{color: "rgba(255,0,0,.9)", fontWeight : 700}} >
+                              {column.format && typeof value === 'number' ? column.format(value) : value}
+                            </TableCell>                   
+                          )
+                        }
+                        if(column.id === "confirmed"){
+                          return (
+                            <TableCell key={column.id} align="center" style={{color: "rgba(100,100,100,.8)", fontWeight : 700}} >
+                              {column.format && typeof value === 'number' ? column.format(value) : value}
+                            </TableCell> 
+                          )
+                        }
+                      }
                       if(column.id === "recovered"){
                         return (                         
                           <TableCell key={column.id} align="center" style={{color : "rgba(0,255,0, .9)", fontWeight: 600}} >
@@ -191,7 +207,7 @@ const Tables = ({countries, getCountryData, width, getDefaultCountryData}) => {
                               {value === "World" ? "Thế giới" : value} 
                             </TableCell>                          
                         )
-                      }
+                      }                      
                       if(column.id === "new_confirmed"|| column.id === "new_deaths" ) {
                         if(value === 0){
                           return   <TableCell key={column.id} align="center" >

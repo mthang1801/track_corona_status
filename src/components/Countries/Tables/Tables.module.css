@@ -3,3 +3,12 @@
   width : 100%;
   margin : 2rem auto;
 }
+
+
+.table_row:nth-child(even){
+  background-color: #f9ffc2;
+}
+
+.table_row:nth-child(odd){
+  background-color: #cceeff;
+}
