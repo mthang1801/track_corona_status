@@ -161,7 +161,7 @@ const StatisticCards = ({
     refBackClosed.current.style.transform = "rotateY(0deg)";
   };
   const toggleGraph3 = () => {
-    setToggleGraph3(!tgGraph1);
+    setToggleGraph3(!tgGraph3);
     if (refFrontCasesRate.current.style.transform === "rotateY(-180deg)") {
       refFrontCasesRate.current.style.transform = "rotateY(0)";
       refBackCasesRate.current.style.transform = "rotateY(180deg)";
@@ -175,7 +175,7 @@ const StatisticCards = ({
     refBackCasesRate.current.style.transform = "rotateY(0deg)";
   };
   const toggleGraph4 = () => {
-    setToggleGraph4(!tgGraph2);
+    setToggleGraph4(!tgGraph4);
     if (refFrontDeathsRate.current.style.transform === "rotateY(-180deg)") {
       refFrontDeathsRate.current.style.transform = "rotateY(0)";
       refBackDeathsRate.current.style.transform = "rotateY(180deg)";
@@ -338,7 +338,7 @@ const StatisticCards = ({
             </div>
             <div className={styles.card_action}>
               <a href="#!" className={styles.link} onClick={toggleGraph2}>
-                {tgGraph1 ? "Xem số liệu" : "Xem biểu đồ"}
+                {tgGraph2 ? "Xem số liệu" : "Xem biểu đồ"}
               </a>
             </div>
           </div>
@@ -409,7 +409,7 @@ const StatisticCards = ({
             </div>
             <div className={styles.card_action}>
               <a href="#!" className={styles.link} onClick={toggleGraph3}>
-                {tgGraph1 ? "Xem số liệu" : "Xem biểu đồ"}
+                {tgGraph3 ? "Xem số liệu" : "Xem biểu đồ"}
               </a>
             </div>
           </div>
@@ -477,7 +477,7 @@ const StatisticCards = ({
             </div>
             <div className={styles.card_action}>
               <a href="#!" className={styles.link} onClick={toggleGraph4}>
-                {tgGraph1 ? "Xem số liệu" : "Xem biểu đồ"}
+                {tgGraph4 ? "Xem số liệu" : "Xem biểu đồ"}
               </a>
             </div>
           </div>

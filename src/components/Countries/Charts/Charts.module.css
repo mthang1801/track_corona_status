@@ -2,6 +2,13 @@
   margin : 3rem;
 }
 
+
+.title{
+  text-align: center;
+  text-transform: uppercase;
+  color : rgba(0,0,0,.8);
+}
+
 @media (max-width:500px){
   .line_chart{
     height : 250px !important;

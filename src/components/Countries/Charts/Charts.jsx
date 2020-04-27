@@ -58,9 +58,13 @@ const Charts = ({corona : {country}}) => {
     />
   )
   return (
-    <div className={styles.line_chart}>
-      {lineHistoryCountryData}
+    <div className={styles.container}>
+      <h2 className={styles.title}>{country.name ==="World" ? "biểu đồ diễn biến dịch trên thế giới" : `biểu đồ diễn biến dịch coronavirus tại ${country.name}`}</h2>
+      <div className={styles.line_chart}>
+        {lineHistoryCountryData}
+      </div>
     </div>
+   
   )
 }
 
