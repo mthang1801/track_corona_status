@@ -3,7 +3,8 @@ import axios from "axios";
 import _ from "lodash";
 
 const url_history = "https://corona-api.com";
-
+const url_countries = "https://corona-api.com/countries/"
+const url_population = "https://world-population.p.rapidapi.com/worldpopulation";
 export const loadData = () =>  async dispatch => {
   try {   
     
@@ -53,7 +54,7 @@ export const loadData = () =>  async dispatch => {
         "x-rapidapi-key": "ccc2cdf0f3msh4d43c21dd521c22p113ff2jsnf92455d7ae64"
       }
     }
-    res = await axios.get("https://world-population.p.rapidapi.com/worldpopulation", config);
+    res = await axios.get(url_population, config);
     let world_population = res.data.body.world_population;
     let world = {
       name : "World",
@@ -100,8 +101,8 @@ export const getHomeCountryData = countryCode => async dispatch => {
   let url = "";
   switch(countryCode){
     case "GB" : url = `${url_history}/timeline`; break;
-    case "VN" : url = `${url_history}/countries/VN` ; break;
-    default : url = `${url_history}/countries/${countryCode}`;
+    case "VN" : url = `${url_countries}/VN` ; break;
+    default : url = `${url_countries}/${countryCode}`;
   }
   
   try {

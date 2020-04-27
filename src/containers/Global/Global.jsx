@@ -5,9 +5,10 @@ import PropTypes from "prop-types";
 import {withRouter} from "react-router-dom";
 import styles from "./Global.module.css";
 import {changePage} from "../../actions/page";
-import {Tables, CardDetails, Spinner} from "../../components";
+import Spinner from "../../components/Layout/Spinner/Spinner";
+import {Header, CardDetails, Tables} from "../../components/Global";
 import {getDataItem}  from "../../actions/corona";
-
+import {Link} from "react-router-dom";
 const Global = ({corona : {new_update, histories, data_item}, changePage, getDataItem}) => {  
   useEffect(() => {
     changePage("global");
@@ -18,13 +19,17 @@ const Global = ({corona : {new_update, histories, data_item}, changePage, getDat
     return <Spinner/>
   }
   return (
-    <>    
-      <div style={{margin:"1rem 2rem"}}>
-        <h1 className={styles.header}>DIỄN BIẾN DỊCH VIRUS CORONA TRÊN TOÀN CẦU</h1>
+    <React.Fragment>    
+      <div style={{margin:"2rem"}}>
+        <Header />
         <CardDetails/>
-        <Tables />
+        <Tables />        
+        <Link to="/"><i className="fas fa-arrow-left"></i> Trở về trang chủ</Link>
+        <div style={{float : "right"}}>
+          <Link to="/countries">Xem chi tiết từng quốc gia <i className="fas fa-arrow-right"></i></Link>
+        </div>
       </div>
-    </>
+    </React.Fragment>
   )
 }
 

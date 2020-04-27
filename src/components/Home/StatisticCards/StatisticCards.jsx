@@ -197,7 +197,7 @@ const StatisticCards = ({
               </div>
             </div>
             <div className={styles.card_action}>
-              <a href="#!" className={styles.link} onClick={toggleGraph1}>
+              <a href="javascript:void(0)" className={styles.link} onClick={toggleGraph1}>
                 {tgGraph1 ? "Xem số liệu" : "Xem biểu đồ"}
               </a>
             </div>

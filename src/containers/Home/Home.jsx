@@ -7,6 +7,7 @@ import {changePage} from "../../actions/page";
 import {withRouter} from "react-router-dom";
 import {Link} from "react-router-dom";
 import styles from "./Home.module.css";
+import Footer from "../../components/Layout/Footer/Footer";
 const Home = ({corona : {loading, home_country}, history,changePage}) => {
   useEffect(() => {      
     changePage("/");
@@ -22,8 +23,9 @@ const Home = ({corona : {loading, home_country}, history,changePage}) => {
         <CardsHome/>
         <StatisticCards/>
         <Charts/>
-        <Link to="/countries" className={styles.link}>Xem thêm các quốc gia</Link>
+        <Link to="/countries" className={styles.link}>Xem thêm các quốc gia</Link>        
       </div>
+      <Footer />
     </React.Fragment>
   )
 }

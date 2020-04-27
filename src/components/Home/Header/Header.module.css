@@ -3,21 +3,24 @@
 }
 
 .header{
-  background : linear-gradient(to right bottom, rgba(50,50,50,.8), rgba(20,20,20,.8)), url("../../../coronavirus-COVID-19.jpg");
-  background-position: top;
-  background-size: cover;
-  height: 80vh;
-  width : 100%;
+  height: 80vh; 
+  width : 100vw;
   margin :0 auto 3rem auto;
-  clip-path: ellipse(73% 79% at 48% 20%);
-  position :relative;
+  clip-path: ellipse(73% 79% at 47% 20%);
+  position :relative; 
 }
 
-.title{
-  padding-top : 5rem;
-  color : #fff;
-  text-transform: uppercase;
-  position :absolute ;
+.video{
+  position : absolute;
+  filter : opacity(85%);
+  width : 100%;
+  overflow: hidden;
+  z-index: -1;
+}
+
+.title{  
+  color : rgba(240,240,240);
+  text-transform: uppercase;  
 }
 
 .main{
@@ -25,27 +28,13 @@
   margin-left :5%;
   float : left; 
   margin-bottom : 2rem;
-  animation: main-title 1s ease-out;
 }
 
-@keyframes main-title{
-  0%{
-    transform: translateX(-10rem);
-  }
-  70%{
-    transform: translateX(5rem);
-  }
-  100%{
-    transform: translateX(0)
-  }
-}
 
 .sub{
   font-size : 3.5em;   
   margin-right : 5%;
   float : right;
-  animation: sub-title 1.2s ease-in 1s 1;
-  animation-fill-mode: backwards;
 }
 
 @keyframes sub-title{
@@ -62,6 +51,29 @@
     opacity : 1
   }
 }
+@media (max-width:767px){ 
+  .header{
+    height: 60vh;
+    width : 100%;
+  }
+  .title{
+    width :100%;
+    height : 100%;   
+    text-align: center;
+    display : flex ; 
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+  .main{    
+    font-size : 2.5em;
+    margin : 0;
+  }
+  .sub{   
+    font-size : 2em;
+    margin : 0;
+  }
+}
 
 @media (max-width:500px){
   :root{
@@ -69,23 +81,98 @@
   }
   .title{
     text-align: center;
-    margin-top : 5rem;
+    margin-top : 0rem;
+    padding-top : 1rem;        
   }
-  .main{
-    clear: float;
-    font-size : 4em;
+  .header{
+    height: 37vh;
+    width : 100%;
   }
-  .sub{
-    clear : float ;
-    font-size : 3.5em;
+  .title{
+    width :100%;
+    height : 100%;
+    display : flex;
+    flex-direction: column;
+    justify-content:center;
+    align-items: center;
+    text-align: center;
+  }
+  .main{    
+    font-size : 2.5em;
+    margin : 0;
+  }
+  .sub{   
+    font-size : 1.75em;
+    margin : 0;
   }
 }
 
-@media (max-width:768px){
-  .main{
-    font-size : 3em;
+@media (min-width: 768px){
+  .title{
+    width :100%;
+    height : 100%;  
+    text-align: center;
+    margin-top : 0rem;
+    padding-top : 1rem;   
+    position :absolute ;
+    top : 20%; 
   }
-  .sub{
-    font-size: 2.5em;
+  .header{
+    height: 70vh;
+    width : 100%;
+  }
+  .main{    
+    font-size : 2.5em;    
+  }
+  .sub{   
+    font-size : 2em;   
+  }
+}
+
+@media (min-width: 992px){
+  
+  .header{
+    height: 75vh;
+    width : 100%;
+  }
+  .title{  
+    display : flex ; 
+    flex-direction: column;
+    align-items: center;
+    justify-content : center;
+    position: absolute;
+    top : 0;
+  }
+  .main{    
+    font-size : 3em; 
+    align-self: flex-start;   
+  }
+  .sub{   
+    font-size : 2.5em;   
+    align-self: flex-end;
+  }
+}
+
+@media (min-width: 1280px){
+  
+  .header{
+    height: 75vh;
+    width : 100%;
+  }
+  .title{  
+    display : flex ; 
+    flex-direction: column;
+    align-items: center;
+    justify-content : center;
+    position: absolute;
+    top : 0;
+  }
+  .main{    
+    font-size : 4em; 
+    align-self: flex-start;   
+  }
+  .sub{   
+    font-size : 3.5em;   
+    align-self: flex-end;
   }
 }

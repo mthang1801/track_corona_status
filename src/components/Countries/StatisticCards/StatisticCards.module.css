@@ -122,14 +122,19 @@
 .normal_status{
   color : rgba(125, 242, 0,.8)
 }
-.card_action{
-  position : absolute;  
+.card_action{   
   font-size : 1.2rem;
-  bottom : 7.5%;
-  text-transform: translate(-50%);
-  left : 42.5%;
-  text-align : left;
+  display : block;
+  width : 100%;
+  height: 100%; 
+  text-align: center;
+}
 
+.card_action > a{
+  position :absolute;
+  left : 36%;
+  bottom : 2.5%;
+  text-transform: translateX(-50%) !important;
 }
 @media (max-width:767px){  
   .card{  
