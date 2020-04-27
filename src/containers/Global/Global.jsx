@@ -2,19 +2,23 @@ import React, {useEffect} from 'react'
 import clsx from "clsx";
 import {connect} from "react-redux";
 import PropTypes from "prop-types";
-import {withRouter} from "react-router-dom";
 import styles from "./Global.module.css";
 import {changePage} from "../../actions/page";
 import Spinner from "../../components/Layout/Spinner/Spinner";
 import {Header, CardDetails, Tables} from "../../components/Global";
 import {getDataItem}  from "../../actions/corona";
-import {Link} from "react-router-dom";
-const Global = ({corona : {new_update, histories, data_item}, changePage, getDataItem}) => {  
-  useEffect(() => {
-    changePage("global");
+import {Link, withRouter} from "react-router-dom";
+
+const Global = ({corona : {new_update, histories, data_item}, changePage, getDataItem, location}) => {  
+  useEffect(() => {    
+    console.log(location);
     getDataItem(histories[0])   
   }, [histories]);
-  
+
+  useEffect(()=>{
+    document.title = "Toàn cầu";
+  },[location.pathname]);
+
   if(!data_item){
     return <Spinner/>
   }
@@ -39,6 +43,7 @@ Global.propTypes = {
 }
 
 const mapStateToProps = state => ({
-  corona : state.corona
+  corona : state.corona,
+  page : state.page
 })
 export default connect(mapStateToProps, {changePage, getDataItem})(withRouter(Global));

@@ -31,7 +31,8 @@ const useStyles = makeStyles((theme) => ({
       width : 350
     },    
     [theme.breakpoints.up("md")] : {
-      width : 400
+      width : 400,
+      padding : "2rem"
     },        
     [theme.breakpoints.up("lg")] : {
       width : 320,

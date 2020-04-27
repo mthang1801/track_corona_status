@@ -23,6 +23,8 @@ const StatisticCards = ({
   historiesGlobal.reverse();
 
   const option = {
+    responsive: true,
+    maintainAspectRatio: false,
     tooltips: {
       callbacks: {
         label: function (tooltipItem, data) {
@@ -44,11 +46,7 @@ const StatisticCards = ({
 
   const pieChartActiveCase = (
     <React.Fragment>
-      <Pie
-        option={{
-          responsive: true,
-          maintainAspectRatio: false,
-        }}
+      <Pie       
         options={option}
         data={{
           labels: ["Bình thường", "Nguy kịch"],
@@ -69,11 +67,7 @@ const StatisticCards = ({
 
   const pieChartClosedCase = (
     <React.Fragment>
-      <Pie
-        option={{
-          responsive: true,
-          maintainAspectRatio: false,
-        }}
+      <Pie      
         options={option}
         data={{
           labels: ["Hồi phục", "Tử vong"],
@@ -197,7 +191,7 @@ const StatisticCards = ({
               </div>
             </div>
             <div className={styles.card_action}>
-              <a href="javascript:void(0)" className={styles.link} onClick={toggleGraph1}>
+              <a href="#!" className={styles.link} onClick={toggleGraph1}>
                 {tgGraph1 ? "Xem số liệu" : "Xem biểu đồ"}
               </a>
             </div>

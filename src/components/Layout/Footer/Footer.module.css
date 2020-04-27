@@ -1,11 +1,11 @@
 .footer{
-  background : linear-gradient(rgba(0,0,0,.6), rgba(0,0,0,.6)), url("../../../coronavirus-COVID-19.jpg");  
+  background : linear-gradient(rgba(0,0,0,.8), rgba(0,0,0,.8)), url("../../../coronavirus-COVID-19.jpg");  
   width : 100%;
   display : flex;    
   justify-content :center;
   align-items: flex-start;
   color : #fff;
-  line-height : 2;
+  line-height : 1.9;
   text-align: left;
   padding: 3rem;
 }
@@ -51,7 +51,7 @@ img{
 
 @media (min-width: 992px){
   .footer{
-    padding : 4rem 4.5rem;
+    padding : 3.5rem 4rem;
     justify-content: center;
   }
 }
@@ -59,7 +59,7 @@ img{
 
 @media (min-width: 1280px){
   .footer{
-    padding : 4.5 6rem !important;
+    padding : 4.5 5rem !important;
     justify-content: center;
   }
 }

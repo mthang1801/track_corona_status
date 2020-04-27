@@ -3,8 +3,8 @@ import * as types from "../actions/types";
 const initialState = {
   home : true, 
   global :  false ,
-  country : false ,
-  city : false
+  countries : false ,
+  cities : false
 }
 
 export default function(state=initialState, action){
@@ -14,29 +14,29 @@ export default function(state=initialState, action){
       return{
         home: true ,
         global :  false ,
-        country : false ,
-        city : false
+        countries : false ,
+        cities : false
       };
     case types.GLOBAL_PAGE : 
       return {
         home: false ,
         global :  true ,
-        country : false ,
-        city : false
+        countries : false ,
+        cities : false
       };
-    case types.COUNTRY_PAGE : 
+    case types.COUNTRIES_PAGE : 
       return {
         home: false ,
         global :  false ,
-        country : true ,
-        city : false
+        countries : true ,
+        cities : false
       };
-    case types.CITY_PAGE : 
+    case types.CITIES_PAGE : 
       return {
         home: false ,
         global :  false ,
-        country : false ,
-        city : true
+        countries : false ,
+        cities : true
       };
     default : return state;
   }

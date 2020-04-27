@@ -70,7 +70,7 @@ const CardDetails = ({data_item}) => {
       </div>
       <div className={styles.card}>
         <div className={styles.card_header}>
-          <h3 className={styles.title}>TRƯỜNG HỢP MỚI TRONG NGÀY</h3>
+          <h3 className={styles.title}>GHI NHẬN MỚI</h3>
           <h5 className={styles.subtitle}> <Moment format="DD-MM-YYYY HH:MM Z">{data_item.date}</Moment></h5>
         </div>
         <div className={styles.content}>

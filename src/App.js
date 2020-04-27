@@ -21,6 +21,8 @@ const App = () => {
   useEffect(() => {
     store.dispatch(loadData());
   },[])
+ 
+  console.log();
   return (
     <ThemeProvider theme={THEME}>
       <Provider store={store}>

@@ -9,6 +9,6 @@ export const LOAD_HOME = "LOAD_HOME";
 export const DATA_ITEM = "DATA_ITEM";
 export const HOME_PAGE = "HOME_PAGE";
 export const GLOBAL_PAGE = "GLOBAL_PAGE";
-export const COUNTRY_PAGE = "COUNTRY_PAGE";
-export const CITY_PAGE = "CITY_PAGE";
+export const COUNTRIES_PAGE = "COUNTRIES_PAGE";
+export const CITIES_PAGE = "CITIES_PAGE";
 

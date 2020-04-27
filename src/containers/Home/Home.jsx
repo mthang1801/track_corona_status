@@ -8,10 +8,16 @@ import {withRouter} from "react-router-dom";
 import {Link} from "react-router-dom";
 import styles from "./Home.module.css";
 import Footer from "../../components/Layout/Footer/Footer";
-const Home = ({corona : {loading, home_country}, history,changePage}) => {
-  useEffect(() => {      
+
+const Home = ({corona : {loading, home_country}, location,changePage}) => {
+  useEffect(() => {         
     changePage("/");
-  }, [])
+  },[location]);
+
+  useEffect(()=>{
+    document.title = "Trang chủ"
+  },[location.pathname]);
+
   if(loading || !home_country){
     return <Spinner/>
   }
