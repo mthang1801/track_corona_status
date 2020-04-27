@@ -151,7 +151,7 @@ const Tables = ({countries, getCountryData, width, getDefaultCountryData}) => {
      
       <Paper className={classes.root}>
         <TableContainer className={classes.container} ref={TblRef}>
-          <Table stickyHeader aria-label="sticky table">
+          <Table stickyHeader aria-label="sticky table" size="small">
             <TableHead>
               <TableRow>
                 {columns.map((column) => {                  
@@ -172,7 +172,28 @@ const Tables = ({countries, getCountryData, width, getDefaultCountryData}) => {
                 return (
                   <TableRow hover role="checkbox" tabIndex={-1} key={row.name} style={{cursor: "pointer"}} onClick={handleClick(row.name)}>
                     {columns.map((column) => {
-                      const value = row[column.id];                     
+                      const value = row[column.id];    
+                      if(column.id === "recovered"){
+                        return (                         
+                          <TableCell key={column.id} align="center" style={{color : "rgba(0,255,0, .9)", fontWeight: 600}} >
+                            {column.format && typeof value === 'number' ? column.format(value) : value}
+                          </TableCell>                          
+                        )
+                      }
+                      if(column.id === "name"){
+                        return (                         
+                            <TableCell key={column.id} align="center" style={{textDecoration : "underline", color : "blue"}} >
+                              {column.format && typeof value === 'number' ? column.format(value) : value}
+                            </TableCell>                          
+                        )
+                      }
+                      if(column.id === "new_confirmed" || column.id === "new_deaths") {
+                        return (
+                          <TableCell key={column.id} align="center" style={{backgroundColor: "rgba(255,0,0,.9)", color : "#fff", border :"1px solid rgba(0,0,0,0.2)", fontWeight : 700}} >
+                            {column.format && typeof value === 'number' ? column.format(value) : value}
+                          </TableCell>
+                        );
+                      }          
                       return (
                         <TableCell key={column.id} align="center"  >
                           {column.format && typeof value === 'number' ? column.format(value) : value}
