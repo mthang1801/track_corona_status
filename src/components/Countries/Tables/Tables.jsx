@@ -143,10 +143,15 @@ const Tables = ({countries, getCountryData, width, getDefaultCountryData}) => {
     })
  
   }
+
+  const handleChange = e => {
+    setSearch(e.target.value)
+    setPage(0);
+  }
   return (
     <div className={styles.container}>
       <form className={classes.input_root} noValidate autoComplete="off" onSubmit={e => e.preventDefault()}>
-        <TextField  label="Tìm kiếm quốc gia" onChange={e => setSearch(e.target.value)} variant="outlined" id="standard-size-small" size="small" classes={{ root : classes.input}}/>      
+        <TextField  label="Tìm kiếm quốc gia" onChange={handleChange} variant="outlined" id="standard-size-small" size="small" classes={{ root : classes.input}}/>      
       </form>
      
       <Paper className={classes.root}>
@@ -187,7 +192,12 @@ const Tables = ({countries, getCountryData, width, getDefaultCountryData}) => {
                             </TableCell>                          
                         )
                       }
-                      if(column.id === "new_confirmed" || column.id === "new_deaths") {
+                      if(column.id === "new_confirmed"|| column.id === "new_deaths" ) {
+                        if(value === 0){
+                          return   <TableCell key={column.id} align="center" style={{  border :"1px solid rgba(0,0,0,0.15)", fontWeight : 700}} >
+                            {column.format && typeof value === 'number' ? column.format(value) : value}
+                          </TableCell>
+                        }
                         return (
                           <TableCell key={column.id} align="center" style={{backgroundColor: "rgba(255,0,0,.9)", color : "#fff", border :"1px solid rgba(0,0,0,0.2)", fontWeight : 700}} >
                             {column.format && typeof value === 'number' ? column.format(value) : value}

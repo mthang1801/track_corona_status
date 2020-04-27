@@ -117,8 +117,7 @@
     position :absolute ;
     top : 20%; 
   }
-  .header{
-    height: 70vh;
+  .header{   
     width : 100%;
   }
   .main{    
@@ -131,8 +130,7 @@
 
 @media (min-width: 992px){
   
-  .header{
-    height: 75vh;
+  .header{   
     width : 100%;
   }
   .title{  
@@ -155,8 +153,7 @@
 
 @media (min-width: 1280px){
   
-  .header{
-    height: 75vh;
+  .header{   
     width : 100%;
   }
   .title{  
