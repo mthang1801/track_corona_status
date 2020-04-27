@@ -16,6 +16,10 @@
   color : #d16f00;
 }
 
+.send_mail > a{
+  color : #ff8a05;
+}
+
 
 .left_side{
   flex-basis:  55%;
@@ -23,6 +27,8 @@
 .right_side{
   flex-basis:  30%;
 }
+
+
 
 img{
   width : 50px;
