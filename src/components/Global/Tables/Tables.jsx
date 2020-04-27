@@ -86,13 +86,14 @@ const Tables = ({corona : {histories} , width}) => {
       </Table>
     </TableContainer>
     <TablePagination
-      rowsPerPageOptions={[10, 25, 50, 100]}
+      rowsPerPageOptions={[10, 25, 50]}
       component="div"
       count={histories.length}
       rowsPerPage={rowsPerPage}
       page={page}      
       onChangePage={handleChangePage}
-      onChangeRowsPerPage={handleChangeRowsPerPage}      
+      onChangeRowsPerPage={handleChangeRowsPerPage}   
+      labelRowsPerPage="Số dòng"   
     />
   </Paper>  
   )

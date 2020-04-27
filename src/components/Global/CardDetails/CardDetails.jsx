@@ -74,9 +74,9 @@ const CardDetails = ({data_item}) => {
           <h5 className={styles.subtitle}> <Moment format="DD-MM-YYYY HH:MM Z">{data_item.date}</Moment></h5>
         </div>
         <div className={styles.content}>
-          <div>Nhiễm bệnh:&nbsp; <span className={styles.new_confirmed}>{data_item.new_confirmed}</span></div>
-          <div>Hồi phục:&nbsp; <span className={styles.new_recovered}>{data_item.new_recovered}</span></div>
-          <div>Tử vong:&nbsp; <span className={styles.new_deaths}>{data_item.new_deaths}</span></div>
+          <div><span>Nhiễm bệnh:</span> <span className={styles.new_confirmed}>{data_item.new_confirmed}</span></div>
+          <div><span>Hồi phục:</span> <span className={styles.new_recovered}>{data_item.new_recovered}</span></div>
+          <div><span>Tử vong: </span><span className={styles.new_deaths}>{data_item.new_deaths}</span></div>
         </div>
         <div className={styles.chart}>
           {barChartNewCases}

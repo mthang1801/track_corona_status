@@ -103,12 +103,23 @@ const Chart = ({corona : {histories, new_update, countries, home_country},getHom
               ticks : {
                 fontSize : 10
               },             
-              gridLineWidth: 0,               
+              gridLineWidth: 0,
+              labelMaxWidth : 5               
             }],
             yAxis : [{
               ticks : {
                 fontSize : 10,                
               },
+              font: function(context) {
+                var width = context.chart.width;
+                var size = Math.round(width / 32);
+
+                return {
+                    weight: 'bold',
+                    size: size
+                };
+             },
+              labelMaxWidth : 5, 
               gridLineWidth: 0,
             }]
           },

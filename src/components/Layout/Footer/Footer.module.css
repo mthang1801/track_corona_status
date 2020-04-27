@@ -3,7 +3,6 @@
   width : 100%;
   display : flex;    
   justify-content :center;
-  align-items: flex-start;
   color : #fff;
   line-height : 1.9;
   text-align: left;
@@ -38,7 +37,19 @@ img{
 }
 @media (max-width: 500px){
   .footer{
+    line-height :2.2;
     padding : 2rem;
+    flex-direction: column;
+    justify-content: center;    
+  }
+  .left_side{
+    text-align:center;
+  }
+  .right_side{
+    text-align: center;
+  }
+  img{
+    width :25px;
   }
 }
 

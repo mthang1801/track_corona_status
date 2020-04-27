@@ -185,21 +185,21 @@ const Tables = ({countries, getCountryData, width, getDefaultCountryData}) => {
                           </TableCell>                          
                         )
                       }
-                      if(column.id === "name"){
+                      if(column.id === "name"){                          
                         return (                         
                             <TableCell key={column.id} align="center" style={{textDecoration : "underline", color : "blue"}} >
-                              {column.format && typeof value === 'number' ? column.format(value) : value}
+                              {value === "World" ? "Thế giới" : value} 
                             </TableCell>                          
                         )
                       }
                       if(column.id === "new_confirmed"|| column.id === "new_deaths" ) {
                         if(value === 0){
-                          return   <TableCell key={column.id} align="center" style={{  border :"1px solid rgba(0,0,0,0.15)", fontWeight : 700}} >
+                          return   <TableCell key={column.id} align="center" >
                             {column.format && typeof value === 'number' ? column.format(value) : value}
                           </TableCell>
                         }
                         return (
-                          <TableCell key={column.id} align="center" style={{backgroundColor: "rgba(255,0,0,.9)", color : "#fff", border :"1px solid rgba(0,0,0,0.2)", fontWeight : 700}} >
+                          <TableCell key={column.id} align="center" style={{color: "rgba(255,0,0,.9)", fontWeight : 700}} >
                             {column.format && typeof value === 'number' ? column.format(value) : value}
                           </TableCell>
                         );
@@ -217,13 +217,15 @@ const Tables = ({countries, getCountryData, width, getDefaultCountryData}) => {
           </Table>
         </TableContainer>
         <TablePagination
-          rowsPerPageOptions={[10, 25, 100]}
+          rowsPerPageOptions={[10, 25, 50]}
           component="div"
           count={searchResults.length}
           rowsPerPage={rowsPerPage}
-          page={page}
+          page={page}          
           onChangePage={handleChangePage}
           onChangeRowsPerPage={handleChangeRowsPerPage}
+          style={{marginRight: "2rem"}}
+          labelRowsPerPage="Số dòng"
         />
       </Paper>
     </div>

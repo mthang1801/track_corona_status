@@ -25,9 +25,18 @@
 }
 
 .content > div{
-  text-align :left;
+  display : flex;
+  justify-content: space-around;
+  /* text-align :left; */
   color: rgba(0,0,0,.6);
   font-weight :600;
+}
+
+content > div > span:first-child{
+  text-align:right;
+}
+content > div > span:last-child{
+  text-align:left;
 }
 
 .new_confirmed, .new_deaths, .new_recovered{
@@ -59,7 +68,7 @@
     width : 80%;    
   }
   .content{
-    width : 35%;
+    width : 50%;
   }
   .chart{
     width: 100%;
@@ -71,6 +80,9 @@
   .card{
     width : 90%;
     margin-bottom: 2rem;
+  }
+  .content{
+    width : 80%;
   }
   .chart{
     width: 100%;
@@ -92,7 +104,7 @@
 
 @media (min-width:992px){
   .content{
-    width : 40%;
+    width : 50%;
   }
   .chart{
     width: 100%;
