@@ -6,7 +6,7 @@ const Footer = () => {
     <div className={styles.footer}>      
       <div className={styles.left_side}>
         <p className={styles.main_content}><i className="fas fa-globe"></i>&nbsp;Website tra cứu diễn biến dịch CoronaVirus</p>
-        <p className={styles.sub_content}><i className="fas fa-database"></i>&nbsp;Dữ liệu tra cứu tại <a href="https://about-corona.net/documentation" target="_blank">đây</a></p>
+        <p className={styles.sub_content}><i className="fas fa-database"></i>&nbsp;Dữ liệu tra cứu <a href="https://about-corona.net/documentation" target="_blank">tại đây</a></p>
         <p className={styles.author}><i className="fas fa-id-card"></i>&nbsp;Bản quyền thuộc về @MVT</p>
         <p><i className="fas fa-graduation-cap"></i> About author : <a href="https://github.com/mthang1801" target="_blank" className={styles.link}>
           <img src={qrcodeImage} ></img>

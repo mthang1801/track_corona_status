@@ -192,7 +192,7 @@ const StatisticCards = ({
   return (
     <div className={styles.container}>
       <div className={styles.wrapper}>
-        <h2 className={styles.title}>Biểu đồ diễn biến dịch coronavirus</h2>
+        <h2 className={styles.title}>Bảng thống kê diễn biến dịch coronavirus</h2>
 
         <div className={styles.cards}>
           {/* Card 1 */}

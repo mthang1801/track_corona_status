@@ -9,7 +9,7 @@ const Header = ({ country , new_update}) => {
       { country && country.name ? (
         <React.Fragment>
            <h1 className={styles.title}>
-            Bảng thống kê tình hình dịch bệnh{" "}
+            Dữ liệu coronavirus{" "}
             <span className={styles.country}>{country.name === "World" ? "trên thế giới" : `tại ${country.name}`}</span>{" "}
           </h1>
           <h4>Cập nhật lúc : <Moment format="HH:MM DD-MM-YYYY">{country.updated_at}</Moment></h4> 
@@ -17,7 +17,7 @@ const Header = ({ country , new_update}) => {
        
       ) : (
         <React.Fragment>
-          <h1 className={styles.title}>DIỄN BIẾN DỊCH BỆNH TẠI CÁC QUỐC GIA</h1>
+          <h1 className={styles.title}>DỮ LIỆU DỊCH BỆNH TẠI CÁC QUỐC GIA</h1>
           <h4>Cập nhật lúc : <Moment format="HH:MM DD-MM-YYYY">{new_update.updated_at}</Moment></h4> 
         </React.Fragment>
       )}
