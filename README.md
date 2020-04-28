@@ -69,3 +69,5 @@ This section has moved here: https://facebook.github.io/create-react-app/docs/tr
 
 
 ### Before deploy Heroku you need to install : $ npm install serve -s
+
+### Fix header page, video not autoplay  

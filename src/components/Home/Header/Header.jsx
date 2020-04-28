@@ -17,8 +17,9 @@ let Header = ({new_update : {date} }) => {
   return (    
     <div className={styles.header}>
       <div className={styles.video} >
-        <video autoPlay loop preload="auto">
+        <video autoPlay loop preload="auto" muted onloadedmetadata="this.muted = true">
           <source src={covervid} type="video/mp4" />
+          Your browser does not support the video tag.
         </video>
        
       </div>
