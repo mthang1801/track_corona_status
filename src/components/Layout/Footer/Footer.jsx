@@ -2,6 +2,9 @@ import React from 'react'
 import styles from "./Footer.module.css";
 import qrcodeImage from "../../../My_Social_Media_Page.png";
 const Footer = () => {
+  const handleClick = e => {
+    window.open('mailto:mthang1801@gmail.com?subject=CoronaVirus&subject=Feedback&body=',"_blank", "width=600,height=500")
+  }
   return (
     <div className={styles.footer}>      
       <div className={styles.left_side}>
@@ -15,7 +18,7 @@ const Footer = () => {
       <div className={styles.right_side}>
         <p className={styles.social_fb}>Follow me at: <a href="https://www.facebook.com/maivanthang95" target="_blank"><i className="fab fa-facebook-square fa-lg" aria-hidden="true"></i></a></p>
         <p className={styles.social_github}>Visit my projects at: <a href="https://github.com/mthang1801"><i className="fab fa-github-square fa-lg"></i></a> </p>
-        <p className={styles.send_mail}>Mọi ý kiến đóng góp vui lòng gửi <a href="mailto:mthang1801@gmail.com?subject=Feedback&body=" target="popup" onClick="window.open('http://kanishkkunal.in','popup','width=600,height=600');return false;">tại đây</a></p>
+        <p className={styles.send_mail}>Mọi ý kiến đóng góp vui lòng gửi <a href="mailto:mthang1801@gmail.com?subject=Feedback&body=" target="_blank" onClick={handleClick}>tại đây</a></p>
       </div>
     </div>
   )

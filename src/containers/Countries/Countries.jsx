@@ -8,8 +8,7 @@ import PropTypes from "prop-types";
 import styles from "./Countries.module.css";
 import {Link, withRouter} from "react-router-dom";
 const Countries = ({corana : {countries, country, loading }, clearCountry,changePage, location }) => {  
-  useEffect( () => {     
-    console.log(location);
+  useEffect( () => {        
     if(country){
       clearCountry();
     }   

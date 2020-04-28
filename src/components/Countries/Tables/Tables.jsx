@@ -103,6 +103,7 @@ const Tables = ({countries, getCountryData, width, getDefaultCountryData}) => {
     setPage(0);
   };
 
+
   let columns = [
     { id: "name", label: "Tên" },
     { id: "confirmed", label: "Số ca nhiễm", format : value => value.toLocaleString("en-us") },
