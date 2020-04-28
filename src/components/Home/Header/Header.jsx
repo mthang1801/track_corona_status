@@ -14,6 +14,7 @@ import PropTypes from "prop-types";
 import Moment from "react-moment";
 import covervid from "../../../Corona2.mp4"
 let Header = ({new_update : {date} }) => {
+ 
   return (    
     <div className={styles.header}>
       <div className={styles.video} >

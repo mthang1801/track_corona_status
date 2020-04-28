@@ -76,10 +76,10 @@ const StatisticCards = ({
         }}
         options={option}
         data={{
-          labels: ["Hồi phục", "Tử vong"],
+          labels: ["Hồi phục", "Tử vong", "Đang điều trị"],
           datasets: [
             {
-              data: [recovered, deaths],
+              data: [recovered, deaths, confirmed -recovered - deaths],
               backgroundColor: ["rgba(0,255,0, .8)", "rgba(100,100,100,.8)"],
               hoverBackgroundColor: ["rgba(0,255,0)", "rgba(95,95,95)"],
             },
@@ -391,7 +391,7 @@ const StatisticCards = ({
                         separator=",">
                         {population-confirmed}
                       </CountUp>{" "}
-                      ({Math.floor(((population-confirmed) / population) *  100)}%)
+                      ({Math.floor(((population-confirmed) / population) *  100).toFixed(0)}%)
                     </div>
                     <div className={styles.second_detail_status}>Số người khỏe mạnh</div>
                   </div>
