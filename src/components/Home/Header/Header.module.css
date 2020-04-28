@@ -10,13 +10,17 @@
   position :relative; 
 }
 
-.video{
+video{
   position : absolute;
   filter : opacity(85%);
   width : 100%;
+  object-position: center;
+  object-fit: fill;
   overflow: hidden;
   z-index: -1;
 }
+
+
 
 .title{  
   color : rgba(240,240,240);
