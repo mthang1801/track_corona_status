@@ -8,6 +8,7 @@
   margin :0 auto 3rem auto;
   clip-path: ellipse(73% 79% at 47% 20%);
   position :relative; 
+  background : linear-gradient(rgba(0,0,0,.8), rgba(0,0,0,.8)), url("../../../coronavirus-COVID-19.jpg");
 }
 
 video{
